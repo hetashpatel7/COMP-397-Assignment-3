@@ -65,10 +65,8 @@
     <Content Include="assets\images\plane.png" />
     <Content Include="css\main.css" />
     <Content Include="packages.config" />
-    <Content Include="assets\audio\engine.ogg" />
     <Content Include="assets\audio\thunder.ogg" />
     <Content Include="assets\audio\yay.ogg" />
-    <Content Include="assets\images\Thumbs.db" />
     <Content Include="Scripts\game.js.map" />
     <Content Include="Scripts\managers\collision.js.map" />
     <Content Include="Scripts\objects\cloud.js.map" />
@@ -78,6 +76,7 @@
     <Content Include="Scripts\objects\plane.js.map" />
     <Content Include="Scripts\objects\scoreboard.js.map" />
     <Content Include="Scripts\utility\utility.js.map" />
+    <Content Include="assets\audio\engine.ogg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

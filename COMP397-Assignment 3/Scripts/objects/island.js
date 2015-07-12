@@ -14,23 +14,23 @@ var objects;
             _super.call(this, imageString);
             this.name = "island";
             this.sound = "yay";
-            this.dy = 5;
+            this.dx = 5;
             this.reset();
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         Island.prototype.checkBounds = function () {
             // check if island has left screen
-            if (this.y > 480 + this.height) {
+            if (this.x < 0 - this.width) {
                 this.reset();
             }
         };
         Island.prototype.reset = function () {
-            this.x = Math.floor(Math.random() * 640); // start island at random location
-            this.y = -this.height; // start island off stage
+            this.y = Math.floor(Math.random() * 640); // start island at random location
+            this.x = 480; // start island off stage
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
         Island.prototype.update = function () {
-            this.y += this.dy; // moves island down the stage
+            this.x -= this.dx; // moves island down the stage
             this.checkBounds();
         };
         return Island;

@@ -52,7 +52,7 @@ function preload() {
     assets = new createjs.LoadQueue();
     assets.installPlugin(createjs.Sound);
     // event listener triggers when assets are completely loaded
-    assets.on("complete", init, this); 
+    assets.on("complete", init, this);
     assets.loadManifest(manifest);
     //Setup statistics object
     setupStats();
@@ -91,7 +91,7 @@ function gameLoop() {
     ocean.update();
     plane.update();
     island.update();
-    
+
     for (var cloud = 0; cloud < 3; cloud++) {
         clouds[cloud].update();
         collision.check(clouds[cloud]);
