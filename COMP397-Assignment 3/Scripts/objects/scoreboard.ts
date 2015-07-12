@@ -18,8 +18,10 @@
 
         // PUBLIC METHODS +++++++++++++++++
         public update() {
+
             this.livesLabel.text = "Lives: " + this.lives;
             this.scoreLabel.text = "Score: " + this.score;
+           
         }
     }
 } 

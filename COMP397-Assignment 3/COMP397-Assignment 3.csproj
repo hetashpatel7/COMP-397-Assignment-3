@@ -59,10 +59,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images\again.png" />
     <Content Include="assets\images\cloud.png" />
+    <Content Include="assets\images\how.png" />
     <Content Include="assets\images\island.png" />
     <Content Include="assets\images\ocean.gif" />
     <Content Include="assets\images\plane.png" />
+    <Content Include="assets\images\start.png" />
     <Content Include="css\main.css" />
     <Content Include="packages.config" />
     <Content Include="assets\audio\thunder.ogg" />

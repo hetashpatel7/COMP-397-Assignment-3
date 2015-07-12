@@ -23,14 +23,22 @@ var manifest = [
     { id: "cloud", src: "assets/images/cloud.png" },
     { id: "yay", src: "assets/audio/yay.ogg" },
     { id: "thunder", src: "assets/audio/thunder.ogg" },
-    { id: "engine", src: "assets/audio/engine.ogg" }
+    { id: "engine", src: "assets/audio/engine.ogg" },
+    { id: "start", src: "assets/images/start.png" },
+    { id: "again", src: "assets/images/again.png" },
+    { id: "how", src: "assets/images/how.png" }
 ];
 // Game Variables
 var ocean;
 var plane;
 var island;
 var clouds = [];
+var start;
+var again;
+var how;
 var scoreboard;
+var inst1;
+var inst2;
 // Game Managers
 var collision;
 // Preloader Function
@@ -78,7 +86,100 @@ function gameLoop() {
     stage.update();
     stats.end(); // end measuring
 }
-// Our Main Game Function
+//Our start game screen function
+function startScreen() {
+    ocean = new objects.Ocean(assets.getResult("ocean"));
+    stage.addChild(ocean);
+    start = new createjs.Bitmap(assets.getResult("start"));
+    start.x = 180;
+    start.y = 200;
+    stage.addChild(start);
+    how = new createjs.Bitmap(assets.getResult("how"));
+    how.x = 180;
+    how.y = 350;
+    stage.addChild(how);
+    start.on("click", startButtonClicked);
+    start.on("mouseover", startButtonOver);
+    start.on("mouseout", startButtonOut);
+    how.on("click", howButtonClicked);
+    how.on("mouseover", howButtonOver);
+    how.on("mouseout", howButtonOut);
+}
+//move to game play screen on button click
+function startButtonClicked() {
+    stage.removeAllChildren();
+    ocean = new objects.Ocean(assets.getResult("ocean"));
+    stage.addChild(ocean);
+    //add island object to stage
+    island = new objects.Island(assets.getResult("island"));
+    stage.addChild(island);
+    // add plane object to stage
+    plane = new objects.Plane(assets.getResult("plane"));
+    stage.addChild(plane);
+    // add 3 cloud objects to stage
+    for (var cloud = 0; cloud < 3; cloud++) {
+        clouds[cloud] = new objects.Cloud(assets.getResult("cloud"));
+        stage.addChild(clouds[cloud]);
+    }
+    //add scoreboard
+    scoreboard = new objects.ScoreBoard();
+    //add collision manager
+    collision = new managers.Collision();
+}
+function startButtonOver() { start.alpha = 0.8; }
+function startButtonOut() {
+    start.alpha = 1.0;
+}
+//display instructions when user clicks on how to play button
+function howButtonClicked() {
+    stage.removeAllChildren();
+    ocean = new objects.Ocean(assets.getResult("ocean"));
+    stage.addChild(ocean);
+    inst1 = new createjs.Text("Scroll Up and Down.Get Coins.", "35px consolas", "#ffffff");
+    inst1.x = 70;
+    inst1.y = 180;
+    stage.addChild(inst1);
+    inst2 = new createjs.Text("Avoid accidents to save lives", "35px consolas", "#ffffff");
+    inst2.x = 70;
+    inst2.y = 250;
+    stage.addChild(inst2);
+    start = new createjs.Bitmap(assets.getResult("start"));
+    start.x = 150;
+    start.y = 350;
+    stage.addChild(start);
+    start.on("click", startButtonClicked);
+    start.on("mouseover", startButtonOver);
+    start.on("mouseout", startButtonOut);
+}
+function howButtonOver() { how.alpha = 0.8; }
+function howButtonOut() { how.alpha = 1.0; }
+function againButtonOver() {
+    again.alpha = 0.8;
+}
+function againButtonOut() {
+    again.alpha = 1.0;
+}
+// Our end screen(game over)Game Function
+function endScreen() {
+    stage.removeAllChildren();
+    ocean = new objects.Ocean(assets.getResult("ocean"));
+    stage.addChild(ocean);
+    inst1 = new createjs.Text("GAME OVER", "39px consolas", "#ffffff");
+    inst1.x = 150;
+    inst1.y = 60;
+    stage.addChild(inst1);
+    inst2 = new createjs.Text("FINAL SCORE:" + scoreboard.score, "39px consolas", "#ffffff");
+    inst2.x = 150;
+    inst2.y = 100;
+    stage.addChild(inst2);
+    again = new createjs.Bitmap(assets.getResult("again"));
+    again.x = 150;
+    again.y = 250;
+    stage.addChild(again);
+    again.on("click", startButtonClicked);
+    again.on("mouseover", againButtonOver);
+    again.on("mouseout", againButtonOut);
+}
 function main() {
     //add ocean object to stage
     ocean = new objects.Ocean(assets.getResult("ocean"));
@@ -98,5 +199,7 @@ function main() {
     scoreboard = new objects.ScoreBoard();
     //add collision manager
     collision = new managers.Collision();
+    stage.removeAllChildren();
+    startScreen();
 }
 //# sourceMappingURL=game.js.map

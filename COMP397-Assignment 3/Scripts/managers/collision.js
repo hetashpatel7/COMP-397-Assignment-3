@@ -24,6 +24,9 @@ var managers;
                     }
                 }
                 gameObject.isColliding = true;
+                if (scoreboard.lives == -1) {
+                    endScreen(); //when live=0 call end screen function to display game over message
+                }
             }
             else {
                 gameObject.isColliding = false;
